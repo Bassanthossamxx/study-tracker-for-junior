@@ -1,6 +1,6 @@
 # Study Quarter tracker (Oct 1 – Dec 31, 2026)
 
-A static study tracker for Ahmed and Bassant. Plain HTML, CSS and JavaScript, no build step.
+A static study tracker for Bassant. Plain HTML, CSS and JavaScript, no build step.
 
 ## Files
 
