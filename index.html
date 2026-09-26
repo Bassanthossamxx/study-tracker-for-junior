@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Study Quarter · Oct–Dec 2026</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📘</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-row">
+      <h1 class="brand">Study Quarter <span class="brand-dates">Oct 1 – Dec 31, 2026</span></h1>
+      <div class="people" role="tablist" aria-label="Whose plan" id="people"></div>
+    </div>
+    <section class="quarter" aria-label="All 92 days at a glance">
+      <div class="quarter-scroll"><div id="grid" class="grid"></div></div>
+      <div class="quarter-stats" id="stats"></div>
+    </section>
+    <nav class="views" aria-label="Views" id="views">
+      <button data-view="today">Today</button>
+      <button data-view="week">Weeks</button>
+      <button data-view="guide">Topics guide</button>
+      <button data-view="materials">Materials</button>
+      <button data-view="cases">Research cases</button>
+      <button data-view="data">Settings &amp; backup</button>
+    </nav>
+  </header>
+
+  <div id="banner"></div>
+  <main id="main" tabindex="-1"></main>
+
+  <dialog id="editor" aria-labelledby="editor-title">
+    <form method="dialog" id="editor-form">
+      <h2 id="editor-title">Edit task</h2>
+      <label>Task<input name="title" required maxlength="200"></label>
+      <div class="two">
+        <label>Type
+          <select name="type">
+            <option value="study">Study</option><option value="project">Project</option>
+            <option value="book">Book</option><option value="video">Video</option>
+            <option value="leetcode">LeetCode</option><option value="research">Research</option>
+            <option value="review">Review</option><option value="kalamna">Kalamna</option>
+          </select>
+        </label>
+        <label>Hours<input name="hours" type="number" min="0" max="12" step="0.25"></label>
+      </div>
+      <label>Day<input name="date" type="date" min="2026-10-01" max="2026-12-31" required></label>
+      <label>Link<input name="link" type="url" placeholder="https://"></label>
+      <label>Details<textarea name="details" rows="3"></textarea></label>
+      <div class="dialog-actions">
+        <button type="button" class="danger" id="editor-delete">Delete task</button>
+        <span class="spacer"></span>
+        <button value="cancel" formnovalidate>Cancel</button>
+        <button value="save" class="primary" id="editor-save">Save task</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="mat-editor" aria-labelledby="mat-title">
+    <form method="dialog" id="mat-form">
+      <h2 id="mat-title">Add material</h2>
+      <label>Title<input name="title" required maxlength="200" placeholder="e.g. FastAPI crash course"></label>
+      <div class="two">
+        <label>Type
+          <select name="kind">
+            <option>Playlist</option><option>Video</option><option>Book</option><option>Course</option>
+            <option>Article</option><option>Docs</option><option>Website</option><option>Paper</option>
+            <option>Practice</option><option>Tool</option><option>Guide</option><option>Other</option>
+          </select>
+        </label>
+        <label>Week<select name="week"><option value="">No specific week</option></select></label>
+      </div>
+      <label>Link<input name="url" type="url" placeholder="https://"></label>
+      <label>Note<textarea name="note" rows="2" placeholder="Which parts, why it's useful…"></textarea></label>
+      <fieldset class="link-task">
+        <legend>Link to a task (optional)</legend>
+        <div class="two">
+          <label>Day<input name="date" type="date" min="2026-10-01" max="2026-12-31"></label>
+          <label>Task<select name="taskId"><option value="">Pick a day first</option></select></label>
+        </div>
+        <label class="inline"><input type="checkbox" name="asTask"> Also add it as a new task on this day</label>
+      </fieldset>
+      <div class="dialog-actions">
+        <button type="button" class="danger" id="mat-delete">Delete material</button>
+        <span class="spacer"></span>
+        <button value="cancel" formnovalidate>Cancel</button>
+        <button value="save" class="primary" id="mat-save">Add material</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="plan.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
